@@ -1,10 +1,12 @@
 const express = require('express');
 const mysql = require('mysql');
+const cors = require('cors');
 
 const app = express();
 const port = 3000;
 
 app.use(express.json());
+app.use(cors());  // Enable CORS for all routes
 
 const db = mysql.createConnection({
     host: 'sql12.freesqldatabase.com',
@@ -13,7 +15,6 @@ const db = mysql.createConnection({
     database: 'sql12727181',
     port: 3306
 });
-
 
 db.connect((err) => {
     if (err) throw err;
@@ -70,13 +71,6 @@ app.delete('/products/:id', (req, res) => {
     });
 });
 
-app.listen(port, () => {
-    console.log(`Server running on port ${port}`);
-});
-
-
-
-
 // Get all blogs
 app.get('/blogs', (req, res) => {
     const sql = 'SELECT * FROM blogs';
@@ -125,4 +119,8 @@ app.delete('/blogs/:id', (req, res) => {
         if (err) throw err;
         res.json({ message: 'Blog deleted' });
     });
+});
+
+app.listen(port, () => {
+    console.log(`Server running on port ${port}`);
 });
