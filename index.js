@@ -6,13 +6,14 @@ const port = 3000;
 
 app.use(express.json());
 
-// MySQL connection setup
 const db = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: '',
-    database: 'productdb'
+    host: 'sql12.freesqldatabase.com',
+    user: 'sql12727181',
+    password: 'j5sLfG1vpZ',
+    database: 'sql12727181',
+    port: 3306
 });
+
 
 db.connect((err) => {
     if (err) throw err;
